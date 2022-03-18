@@ -7,10 +7,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
 
@@ -29,6 +40,11 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
     private Game_Endless_NoJump gameActivity;
     private SharedPreferences prefs;
 
+    private InterstitialAd mInterstitialAd;
+
+
+    public static long finalScore;
+
     public GameEndlesNoJumpView(Game_Endless_NoJump context, int x, int y){
         super(context);
         gameActivity = context;
@@ -46,6 +62,35 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
         levelBarier = 25;
         score = 0;
         level = 1;
+
+        finalScore = 0;
+
+        MobileAds.initialize(context, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+
+        InterstitialAd.load(this.getContext(),"ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.i("TAG", "laodAdd Failed");
+                        mInterstitialAd = null;
+                    }
+                });
+
+
     }
     @Override
     public void run() {
@@ -58,11 +103,19 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
     }
     public void save()
     {
+        finalScore = score;
+        MainActivity.addAfterAttemps += 1;
+        //if (mInterstitialAd != null && MainActivity.addAfterAttemps >= 3) {
+        if (MainActivity.addAfterAttemps >= 3) {
+            //mInterstitialAd.show(gameActivity);
+            MainActivity.addAfterAttemps = 0;
+        }
         if(MainActivity.highScore < score)
             MainActivity.highScore = score;
         SharedPreferences.Editor editor = prefs.edit();
         editor.putLong("highScore", MainActivity.highScore);
         editor.putInt("addAfterAttemps", MainActivity.addAfterAttemps);
+
         // Commit the edits!
         editor.commit();
     }
@@ -169,8 +222,8 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
     private void waitBeforeExtiting()
     {
         try {
-            Thread.sleep(3000);
-            Intent  intent = new Intent(gameActivity, GameOver.class);
+            Thread.sleep(300);
+            Intent intent = new Intent(gameActivity, GameOver.class);
             gameActivity.startActivity(intent);
         } catch (Exception e)
         {

@@ -33,11 +33,4 @@ public class Game_Endless_NoJump extends AppCompatActivity {
         super.onResume();
         gameView.resume();
     }
-
-
-    public void endView()
-    {
-        Intent intent = new Intent(Game_Endless_NoJump.this, GameOver.class);
-        startActivity(intent);
-    }
 }
