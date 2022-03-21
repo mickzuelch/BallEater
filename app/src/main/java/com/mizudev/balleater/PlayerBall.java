@@ -15,7 +15,7 @@ public class PlayerBall {
         ballSizeScale = 1.0F;
         x = screenX/2.0F;
         y = screenY/2.0F;
-        decrease = 0.5F;
+        decrease = 1.5F;
     }
 
     public float getX()
@@ -61,5 +61,18 @@ public class PlayerBall {
         ballSize = ballSizeLimit;
         ballSizeLimit += 25;
         ballSizeScale = ballSizeLimit / 300.0F;
+    }
+
+    public boolean increasePlayer()
+    {
+        ballSize += 2.5;
+        if(ballSize > 1000)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

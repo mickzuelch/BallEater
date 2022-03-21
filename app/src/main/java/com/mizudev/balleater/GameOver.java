@@ -18,6 +18,8 @@ public class GameOver extends AppCompatActivity {
     private Button newGame;
     private Button mainMenu;
 
+    public static long finalScoreLong = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class GameOver extends AppCompatActivity {
         finalScore.setTextSize(20);
         finalScore.setTextColor(Color.WHITE);
         finalScore.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        finalScore.setText("Your Score:\n" + GameEndlesNoJumpView.finalScore);
+        finalScore.setText("Your Score:\n" + finalScoreLong);
 
         newGame = findViewById(R.id.replayGO);
         newGame.setText("Replay");

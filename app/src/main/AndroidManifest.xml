@@ -15,6 +15,12 @@
             android:value="ca-app-pub-5386637712200898~4946547647"/>
 
         <activity
+            android:name=".GameEscapeBalls"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
+
+        <activity
             android:name=".GameOver"
             android:exported="false"
             android:screenOrientation="portrait"

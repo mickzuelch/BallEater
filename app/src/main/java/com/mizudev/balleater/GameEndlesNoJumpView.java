@@ -42,9 +42,6 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
 
     private InterstitialAd mInterstitialAd;
 
-
-    public static long finalScore;
-
     public GameEndlesNoJumpView(Game_Endless_NoJump context, int x, int y){
         super(context);
         gameActivity = context;
@@ -103,7 +100,7 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
     }
     public void save()
     {
-        finalScore = score;
+        GameOver.finalScoreLong = score;
         MainActivity.addAfterAttemps += 1;
         //if (mInterstitialAd != null && MainActivity.addAfterAttemps >= 3) {
         if (MainActivity.addAfterAttemps >= 3) {

@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private Button startGameButton;
+    private Button startEscapeGame;
     private TextView highScoreTextView;
 
     public static int addAfterAttemps;
@@ -37,11 +38,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         startGameButton = findViewById(R.id.startGame);
-        startGameButton.setText("Start Game");
+        startGameButton.setText("BallEater");
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Game_Endless_NoJump.class);
+                startActivity(intent);
+            }
+        });
+
+        startEscapeGame = findViewById(R.id.startGameEscape);
+        startEscapeGame.setText("Food Escape");
+        startEscapeGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GameEscapeBalls.class);
                 startActivity(intent);
             }
         });
