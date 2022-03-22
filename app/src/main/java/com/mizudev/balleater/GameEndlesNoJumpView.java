@@ -59,8 +59,7 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
         levelBarier = 25;
         score = 0;
         level = 1;
-
-        finalScore = 0;
+        
 
         MobileAds.initialize(context, new OnInitializationCompleteListener() {
             @Override
@@ -69,7 +68,7 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
         AdRequest adRequest = new AdRequest.Builder().build();
 
 
-        InterstitialAd.load(this.getContext(),"ca-app-pub-3940256099942544/1033173712", adRequest,
+        InterstitialAd.load(this.getContext(),"ca-app-pub-5386637712200898/8502649276", adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -102,9 +101,9 @@ public class GameEndlesNoJumpView extends SurfaceView implements Runnable{
     {
         GameOver.finalScoreLong = score;
         MainActivity.addAfterAttemps += 1;
-        //if (mInterstitialAd != null && MainActivity.addAfterAttemps >= 3) {
-        if (MainActivity.addAfterAttemps >= 3) {
-            //mInterstitialAd.show(gameActivity);
+        if (mInterstitialAd != null && MainActivity.addAfterAttemps >= 3) {
+        //if (MainActivity.addAfterAttemps >= 3) {
+            mInterstitialAd.show(gameActivity);
             MainActivity.addAfterAttemps = 0;
         }
         if(MainActivity.highScore < score)

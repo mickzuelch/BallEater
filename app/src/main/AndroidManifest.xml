@@ -18,7 +18,8 @@
             android:name=".GameEscapeBalls"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar" />
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:hardwareAccelerated="true"/>
 
         <activity
             android:name=".GameOver"
