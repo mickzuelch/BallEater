@@ -53,16 +53,6 @@ public class GameOver extends AppCompatActivity {
             }
         });
 
-        newGame = findViewById(R.id.replayGO);
-        newGame.setText("Replay");
-        newGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameOver.this, Game_Endless_NoJump.class);
-                startActivity(intent);
-            }
-        });
-
         mainMenu = findViewById(R.id.backToMainMenuGO);
         mainMenu.setText("Main Menu");
         mainMenu.setOnClickListener(new View.OnClickListener() {
