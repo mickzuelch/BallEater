@@ -3,12 +3,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.mizudev.balleater'
+
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.mizudev.balleater"
         minSdk 28
-        targetSdk 32
+        targetSdk 36
         versionCode 4
         versionName "1.1.0"
 

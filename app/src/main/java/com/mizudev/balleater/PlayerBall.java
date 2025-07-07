@@ -51,7 +51,7 @@ public class PlayerBall {
     {
         if(ballSize < ballSizeLimit)
             ballSize += size;
-        if(ballSize > ballSizeLimit);
+        if(ballSize > ballSizeLimit)
             ballSize = ballSizeLimit;
     }
 
