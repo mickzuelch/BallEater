@@ -51,8 +51,18 @@ public class PlayerBall {
     {
         if(ballSize < ballSizeLimit)
             ballSize += size;
-        if(ballSize > ballSizeLimit);
+        if(ballSize > ballSizeLimit)
             ballSize = ballSizeLimit;
+    }
+
+    /**
+     * Grow the player ball without applying any size limit. Used by
+     * the Food Escape mode where the goal is to keep the ball as
+     * small as possible.
+     */
+    public void grow(float size)
+    {
+        ballSize += size;
     }
 
     public void increaseDecreaser(float decreaser)
